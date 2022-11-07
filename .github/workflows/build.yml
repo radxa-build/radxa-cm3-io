@@ -1,4 +1,4 @@
-name: Build
+name: Monthly build
 on:
   workflow_dispatch:
   schedule:
@@ -50,7 +50,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload debos-radxa image
         uses: radxa/debos-build-action@main
-        if: matrix.BUILD_SYSTEM == 'debos' && ( (matrix.DISTRO == 'debian' && matrix.FLAVOR == 'xfce') || (matrix.DISTRO == 'ubuntu' && matrix.FLAVOR == 'cli') )
+        if: matrix.BUILD_SYSTEM == 'debos' && ( (matrix.DISTRO == 'debian' && matrix.FLAVOR == 'kde') || (matrix.DISTRO == 'ubuntu' && matrix.FLAVOR == 'cli') )
         with:
           board: ${{ matrix.BOARD }}
           distro: ${{ matrix.DISTRO }}
@@ -61,8 +61,8 @@ jobs:
         uses: radxa-repo/rbuild@main
         if: matrix.BUILD_SYSTEM == 'rbuild'
         with:
-          board: ${{ matrix.boards }}
-          distro: ${{ matrix.distros }}
-          flavor: ${{ matrix.flavors }}
+          board: ${{ matrix.BOARD }}
+          distro: ${{ matrix.DISTRO }}
+          flavor: ${{ matrix.FLAVOR }}
           release-id: ${{ needs.prepare_release.outputs.release_id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
