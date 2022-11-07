@@ -1,9 +1,9 @@
-# Radxa CM3 IO Board
+# Radxa ROCK3 Compute Module IO Board
 [![Build](https://github.com/radxa-build/radxa-cm3-io/workflows/Build/badge.svg)](https://github.com/radxa-build/radxa-cm3-io/actions/workflows/build.yml)
 
 ## What is this?
 
-This repo is the central location for Radxa-built system images for Radxa CM3 IO Board.
+This repo is the central location for Radxa-built system images for Radxa ROCK3 Compute Module IO Board.
 
 Not all images are officially supported by Radxa. Some of them are only provided as-is with no warranty. Please read below for detailed explanations.
 
