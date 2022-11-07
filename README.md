@@ -25,6 +25,6 @@ Every month new images are [built](https://github.com/radxa-build/radxa-cm3-io/a
 
 ## Help! Something doesn't work!
 
-For other questions, please first take a look at [our Wiki](https://wiki.radxa.com/Home), which covers the most basic usages.
+For other questions, please first take a look at [our Wiki](https://wiki.radxa.com/Rock3/CM3/radxacm3io), which covers the most basic usages.
 
-Should you have any additional questions, please visit [our forum](https://rock.sh/go) or [our Discord](https://rock.sh/go), and we are willing to help.
+Should you have any additional questions, please visit [our forum](https://forum.radxa.com/) or [our Discord](https://rock.sh/go), and we are willing to help.
