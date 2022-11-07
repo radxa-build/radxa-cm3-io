@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Get time
         id: time
         uses: nanzm/get-time-action@v1.1
@@ -24,6 +24,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_commitish: main
           draft: false
+          prerelease: true
     outputs:
       release_id: ${{ steps.release.outputs.id }}
   build:
@@ -32,24 +33,36 @@ jobs:
     strategy:
       matrix:
         BOARD: [radxa-cm3-io]
-        DISTRO: [debos]
-        FLAVOR: [debian, ubuntu]
+        BUILD_SYSTEM: [debos, rbuild]
+        DISTRO: [debian, ubuntu]
+        FLAVOR: [kde, cli]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Upload Armbian image
         uses: radxa/armbian-compile-action@main
-        if: matrix.DISTRO == 'armbian'
+        if: matrix.BUILD_SYSTEM == 'armbian'
         with:
           board: ${{ matrix.BOARD }}
+          distro: ${{ matrix.DISTRO }}
           flavor: ${{ matrix.FLAVOR }}
           release-id: ${{ needs.prepare_release.outputs.release_id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload debos-radxa image
         uses: radxa/debos-build-action@main
-        if: matrix.DISTRO == 'debos'
+        if: matrix.BUILD_SYSTEM == 'debos' && ( (matrix.DISTRO == 'debian' && matrix.FLAVOR == 'xfce') || (matrix.DISTRO == 'ubuntu' && matrix.FLAVOR == 'cli') )
         with:
           board: ${{ matrix.BOARD }}
+          distro: ${{ matrix.DISTRO }}
           flavor: ${{ matrix.FLAVOR }}
+          release-id: ${{ needs.prepare_release.outputs.release_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload rbuild image
+        uses: radxa-repo/rbuild@main
+        if: matrix.BUILD_SYSTEM == 'rbuild'
+        with:
+          board: ${{ matrix.boards }}
+          distro: ${{ matrix.distros }}
+          flavor: ${{ matrix.flavors }}
           release-id: ${{ needs.prepare_release.outputs.release_id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}

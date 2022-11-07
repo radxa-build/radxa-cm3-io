@@ -1,19 +1,30 @@
 # Radxa CM3 IO Board
-[![iso_build](https://github.com/radxa-build/radxa-cm3-io/workflows/Build/badge.svg)](https://github.com/radxa-build/radxa-cm3-io/actions/workflows/build.yml)
+[![Build](https://github.com/radxa-build/radxa-cm3-io/workflows/Build/badge.svg)](https://github.com/radxa-build/radxa-cm3-io/actions/workflows/build.yml)
 
 ## What is this?
 
-A collection of auto-generated images for Radxa CM3 IO Board.
+This repo is the central location for Radxa-built system images for Radxa CM3 IO Board.
 
-* Radxa debos image will have name started with the board name.
+Not all images are officially supported by Radxa. Some of them are only provided as-is with no warranty. Please read below for detailed explanations.
 
-## Where can I download the image?
+## What images are provided?
 
-Built images are uploaded to [GitHub Releases](https://github.com/radxa-build/radxa-cm3-io/releases/latest).
+Currently the following images are provided:
+* Radxa [`debos-radxa`](https://github.com/radxa/debos-radxa) images (currently supported)
+* Radxa [`rbuild`](https://github.com/radxa-repo/rbuild) images (currently testing)
+
+`debos-radxa` images contain the build time in the file name, while `rbuild` images have a fixed file name across releases. They have similar file name format as `rbuild` is intended to replace `debos-radxa`. Once we deem `rbuild` is production-ready we will cease to produce `debos-radxa` images to avoid confusion.
+
+## Is there any other options?
+
+Please visit [our Wiki](https://wiki.radxa.com/Rock3/downloads) for more download options.
+
+## Where can I download the Radxa image?
+
+Every month new images are [built](https://github.com/radxa-build/radxa-cm3-io/actions/workflows/build.yml) and [published](https://github.com/radxa-build/radxa-cm3-io/releases) as pre-releases, which serve as release candidates (RC). Radxa will periodically select an RC for additional testing, and once it passes those tests, promote it as an officially supported release. This is why you are always recommended to use [the latest release](https://github.com/radxa-build/radxa-cm3-io/releases/latest).
 
 ## Help! Something doesn't work!
 
-This image assumes Radxa CM3 IO board. If you are using Raspberry Pi CM4 IO board, you will need to manually update `/boot/uEnv.txt` to use `rk3566-radxa-cm3-rpi-cm4-io.dtb` instead. 
-
 For other questions, please first take a look at [our Wiki](https://wiki.radxa.com/Home), which covers the most basic usages.
+
 Should you have any additional questions, please visit [our forum](https://rock.sh/go) or [our Discord](https://rock.sh/go), and we are willing to help.
