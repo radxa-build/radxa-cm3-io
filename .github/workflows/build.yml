@@ -36,6 +36,13 @@ jobs:
         build_systems: [debos, rbuild]
         distros: [debian, ubuntu]
         flavors: [kde, cli]
+        exclude:
+          - build_systems: debos
+            distros: debian
+            flavors: cli
+          - build_systems: debos
+            distros: ubuntu
+            flavors: kde
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -50,7 +57,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload debos-radxa image
         uses: radxa/debos-build-action@main
-        if: matrix.build_systems == 'debos' && ( (matrix.distros == 'debian' && matrix.flavors == 'kde') || (matrix.distros == 'ubuntu' && matrix.flavors == 'cli') )
+        if: matrix.build_systems == 'debos'
         with:
           board: ${{ matrix.boards }}
           distro: ${{ matrix.distros }}
