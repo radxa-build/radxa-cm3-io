@@ -27,6 +27,7 @@ jobs:
       name: "Enable auto-merge for Dependabot PRs"
       run: |
         gh pr merge --auto --merge "$PR_URL"
+    timeout-minutes: 10
 name: "Dependabot auto-merge"
 "on":
   pull_request: {}
